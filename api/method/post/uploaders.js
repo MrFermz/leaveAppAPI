@@ -12,7 +12,7 @@ async function uploaders(req, res, body) {
         let type        = req.headers['content-type'].split('/')[1]
         let timeStamp   = Date.now()
         let filename    = `${token.id}_${timeStamp}.${type}`
-        fs.writeFile(`http://103.22.183.171/api/uploads/${filename}`, data, async function (error) {
+        fs.writeFile(`uploads/${filename}`, data, async function (error) {
             if (error) {
                 console.log(`writeFile: ${error}`)
                 result_failed['data']       = error
