@@ -12,14 +12,14 @@ async function uploaders(req, res, body) {
         let type        = req.headers['content-type'].split('/')[1]
         let timeStamp   = Date.now()
         let filename    = `${token.id}_${timeStamp}.${type}`
-        fs.writeFile(`api/uploads/${filename}`, data, async function (error) {
+        fs.writeFile(`http://103.22.183.171/api/uploads/${filename}`, data, async function (error) {
             if (error) {
                 console.log(`writeFile: ${error}`)
                 result_failed['data']       = error
                 res.end(JSON.stringify(result_failed))
             } else {
-                let paths           = path.join(__dirname, '../../uploads', filename)
-                let upload          = await createUploads(paths)
+                // let paths           = path.join(__dirname, '../../uploads', filename)
+                let upload          = await createUploads(filename)
                 let insertId        = upload.data.insertId
                 if (upload.result == 'success') {
                     result_success['data']      = insertId
