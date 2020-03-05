@@ -6,4 +6,4 @@ docker rmi api
 
 docker build -t api .
 
-docker run --name api --network=leaveApp -v /home/docker/leaveAppAPI:/app/src -p 9000:9000 --restart always -d api
+docker run --name api --network=leaveApp -v /home/docker/leaveAppAPI:/app/src -v /home/docker/uploads:/app/src/uploads -p 9000:9000 --restart always -d api
