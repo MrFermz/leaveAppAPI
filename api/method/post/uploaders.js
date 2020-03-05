@@ -14,6 +14,7 @@ async function uploaders(req, res, body) {
         let filename    = `${token.id}_${timeStamp}.${type}`
         fs.writeFile(`api/uploads/${filename}`, data, async function (error) {
             if (error) {
+                console.log(`writeFile: ${error}`)
                 result_failed['data']       = error
                 res.end(JSON.stringify(result_failed))
             } else {
@@ -36,6 +37,7 @@ function createUploads(path) {
         let sql     = `INSERT INTO uploads (URL) VALUE ?`
         db.query(sql, [values], function (error, res) {
             if (error) {
+                console.log(`Insert: ${error}`)
                 reject(error)
             } else {
                 result_success['data']  = res
