@@ -10,4 +10,4 @@ COPY . /app
 
 EXPOSE 9000
 
-CMD ["npm", "start"]
+CMD ["./start.sh"]
