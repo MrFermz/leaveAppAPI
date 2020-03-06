@@ -1,7 +1,11 @@
 {
   "name": "Leave-Web-Application",
   "version": "0.1.0",
-  "description": "",
+  "description": "Leave-Web-Application",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MrFermz/leaveAppAPI.git"
+  },
   "main": "server.js",
   "scripts": {
     "start": "node api/server.js"
