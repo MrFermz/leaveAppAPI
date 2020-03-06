@@ -7,7 +7,7 @@ async function gettypeid(req, res) {
     let token       = await verifyToken(req, res)
 
     if (token) {
-        let sql     = `SELECT users.typeID,
+        let sql     = `SELECT users.typeID
                        FROM users
                        WHERE users.UID = ${token.id}`
         db.query(sql, async function (error, result) {
