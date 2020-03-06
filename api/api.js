@@ -28,6 +28,7 @@ const lists_pendings                = require('./method/get/lists_pendings')
 const lists_type                    = require('./method/get/lists_type')
 const lists_users                   = require('./method/get/lists_users')
 const lists_leave_max               = require('./method/get/lists_leave_max')
+const get_type_id                   = require('./method/get/get_type_id')
 
 
 // ======================================== VERB LIST ========================================
@@ -96,6 +97,8 @@ async function callAPI(req, res, body) {
             case '/listsapprover'               : lists_approver(req, res)
                 break           
             case '/listsleavemax'               : lists_leave_max(req, res)
+                break           
+            case '/gettypeid'                   : get_type_id(req, res)
                 break           
             default                             : res.end('404')
                 break
