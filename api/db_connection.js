@@ -1,6 +1,7 @@
 const MYSQL         =   require('mysql')
 const CONFIG        =   require('./config.json')
-const CONN          =   MYSQL.createConnection({
+const CONN          =   MYSQL.createPool({
+                            connectionLimit : 10,
                             host        : CONFIG.SQL.HOST,
                             port        : CONFIG.SQL.PORT,
                             user        : CONFIG.SQL.USER,
@@ -10,7 +11,7 @@ const CONN          =   MYSQL.createConnection({
 
 
 function connection() {
-    CONN.connect( async function (error) {
+    CONN.getConnection( async function (error) {
         console.log('MySQL Connected.')
         
         await createTableUsers()
