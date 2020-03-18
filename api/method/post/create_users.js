@@ -6,9 +6,9 @@ const { result_success, result_failed }     = require('../result')
 
 
 async function createusers(req, res, body) {
-    let token       = await verifyToken(req, res)
+    // let token       = await verifyToken(req, res)
 
-    if (token) {
+    // if (token) {
         let data            = JSON.parse(body)
         data.username       = data.username.toLowerCase()
         let hashedpwd       = bcrypt.hashSync(data.password, 8)
@@ -58,9 +58,9 @@ async function createusers(req, res, body) {
                 })
             }
         })
-    } else {
-        res.end(JSON.stringify(result_failed))
-    }
+    // } else {
+    //     res.end(JSON.stringify(result_failed))
+    // }
 }
 
 
