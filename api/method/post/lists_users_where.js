@@ -17,7 +17,7 @@ async function listsuserswhere(req, res, body) {
                               users.deptID, 
                               users.typeID, 
                               users.approverID,
-                              users.leaveDaysID
+                              users.leavecountID
                        FROM users
                        WHERE UID = ${UID}`
         db.query(sql, async function (error, result) {

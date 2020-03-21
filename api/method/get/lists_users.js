@@ -15,7 +15,7 @@ async function listsusers(req, res) {
                               users.deptID, 
                               users.typeID, 
                               users.approverID,
-                              users.leaveDaysID
+                              users.leavecountID
                        FROM users`
         db.query(sql, async function (error, result) {
             if (error) {

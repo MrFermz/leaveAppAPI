@@ -41,7 +41,7 @@ function getUsers(id) {
                                 deptID,
                                 typeID,
                                 approverID,
-                                leavedaysID
+                                leavecountID
                        FROM users
                        WHERE approverID = ${id}`
         db.query(sql, function (error, result) {

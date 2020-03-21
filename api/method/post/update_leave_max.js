@@ -8,11 +8,11 @@ async function updatelieavemax(req, res, body) {
 
     if (token) {
         let data        = JSON.parse(body)
-        let sql         = `UPDATE   leavemax
-                           SET      sick        = ${data.sick},
-                                    business    = ${data.business},
-                                    vacation    = ${data.vacation}
-                           WHERE    leavemaxID  = ${data.id}`
+        let sql         = `UPDATE   leavecapacity
+                           SET      sick            = ${data.sick},
+                                    business        = ${data.business},
+                                    vacation        = ${data.vacation}
+                           WHERE    leavecapacityID = ${data.id}`
         db.query(sql, function (error, result) {
             if (error) {
                 result_failed['data']   = error

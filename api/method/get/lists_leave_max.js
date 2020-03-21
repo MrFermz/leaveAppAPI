@@ -7,7 +7,7 @@ async function listsleavemax(req, res) {
     let token       = await verifyToken(req, res)
 
     if (token) {
-        let sql     = `SELECT * FROM leavemax`
+        let sql     = `SELECT * FROM leavecapacity`
         db.query(sql, function (error, result) {
             if (error) {
                 result_failed['data']   = error

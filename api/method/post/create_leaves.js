@@ -44,12 +44,12 @@ async function createleaves(req, res, body) {
 
 function usedleavedays(id, type) {
     return new Promise(async function (resolve, reject) {
-        let sql     = `SELECT leavedaysID FROM users WHERE UID = ${id}`
+        let sql     = `SELECT leavecountID FROM users WHERE UID = ${id}`
         db.query(sql, async function (error, result) {
             if (error) reject(error)
             else {
-                let ID      = result[0].leavedaysID
-                let sql     = `SELECT * FROM leavedays WHERE leavedaysID = ${ID}`
+                let ID      = result[0].leavecountID
+                let sql     = `SELECT * FROM leavecount WHERE leavecountID = ${ID}`
                 db.query(sql, function (error, result) {
                     if (error) reject(error)
                     else {
@@ -75,7 +75,7 @@ function usedleavedays(id, type) {
                             default:
                                 break
                         }
-                        let sql     = `UPDATE leavedays SET ${type} = ${value} WHERE leavedaysID = ${ID}`
+                        let sql     = `UPDATE leavecount SET ${type} = ${value} WHERE leavecountID = ${ID}`
                         db.query(sql, function (error, result) {
                             if (error) reject(error)
                             else resolve(result_success)

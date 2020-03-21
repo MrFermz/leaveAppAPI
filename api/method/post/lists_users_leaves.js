@@ -9,7 +9,7 @@ async function listsusersleaves(req, res, body) {
     if (token) {
         let data    = JSON.parse(body)
         let id      = data.id
-        let sql     = `SELECT leavedaysID, substitutionMax FROM leavedays WHERE leavedaysID = ${id}`
+        let sql     = `SELECT leavecountID, substitutionMax FROM leavecount WHERE leavecountID = ${id}`
         db.query(sql, function name(error, result) {
             if (error) {
                 result_failed['data']   = error

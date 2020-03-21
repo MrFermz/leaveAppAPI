@@ -24,7 +24,7 @@ async function updateusers(req, res, body) {
                 result_failed['data']   = error
                 res.end(JSON.stringify(result_failed))
             } else {
-                await updateSubsMax(data.leavedaysID, Number(data.subsMax))
+                await updateSubsMax(data.leavecountID, Number(data.subsMax))
                 if (data.makeAppr) {
                     await createApprover(data.UID)
                 } else {

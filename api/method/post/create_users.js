@@ -39,16 +39,16 @@ async function createusers(req, res, body) {
                 result_failed['data']   =   error
                 res.end(JSON.stringify(result_failed))
             } else {
-                let insertId        = result.insertId
-                let leaveDays       = await createLeavesDays()
-                let leaveDaysID     = leaveDays.insertId
+                let insertId         = result.insertId
+                let leavecount       = await createLeavesDays()
+                let leavecountID     = leavecount.insertId
                 if (data.makeAppr) {
                     await createApprover(insertId)
                 }
-                let sqlLeaveDays    = `UPDATE users
-                                       SET    leavedaysID     = ${leaveDaysID}
-                                       WHERE  UID             = ${insertId}`
-                db.query(sqlLeaveDays, function(error, result){
+                let sqlLeaveCount    = `UPDATE users
+                                        SET    leavecountID     = ${leavecountID}
+                                        WHERE  UID              = ${insertId}`
+                db.query(sqlLeaveCount, function(error, result){
                     if (error) {
                         result_failed['data']   = error
                         res.end(JSON.stringify(result_failed))
@@ -67,11 +67,11 @@ async function createusers(req, res, body) {
 function createLeavesDays() {
     return new Promise(async function (resolve, reject) {
         let values  = [[0, 0, 0, 0, 0]]
-        let sql     = `INSERT INTO leavedays (sick, 
-                                              business, 
-                                              vacation, 
-                                              substitution, 
-                                              substitutionMax)
+        let sql     = `INSERT INTO leavecount (sick, 
+                                               business, 
+                                               vacation, 
+                                               substitution, 
+                                               substitutionMax)
                        VALUES ?`
         db.query(sql, [values], function (error, res) {
             if (error) reject(error)
