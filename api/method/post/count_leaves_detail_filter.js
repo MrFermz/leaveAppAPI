@@ -21,7 +21,7 @@ async function countleavesdetailfilter(req, res, body) {
                                     (SELECT nickname FROM users WHERE UID = leaves.UID) AS nickname,
                                     COUNT(*) AS cnt
                            FROM     leaves
-                           WHERE    timeStamp >= '${start}' AND timeStamp <= '${end}'
+                           WHERE    timeStamp >= '${start}' AND timeStamp <= '${end}' AND status = 1
                            GROUP BY leaves.UID,
                                     leaves.leaveType
                            ORDER BY leaves.UID`
@@ -35,7 +35,7 @@ async function countleavesdetailfilter(req, res, body) {
                                     (SELECT nickname FROM users WHERE UID = leaves.UID) AS nickname,
                                     COUNT(*) AS cnt
                            FROM     leaves
-                           WHERE    timeStamp >= '${start}' AND timeStamp <= '${end}' AND UID = ${UID}
+                           WHERE    timeStamp >= '${start}' AND timeStamp <= '${end}' AND UID = ${UID} AND status = 1
                            GROUP BY leaves.UID,
                                     leaves.leaveType
                            ORDER BY leaves.UID`
@@ -49,7 +49,7 @@ async function countleavesdetailfilter(req, res, body) {
                                     (SELECT nickname FROM users WHERE UID = leaves.UID) AS nickname,
                                     COUNT(*) AS cnt
                            FROM     leaves
-                           WHERE    UID = ${UID}
+                           WHERE    UID = ${UID} AND status = 1
                            GROUP BY leaves.UID,
                                     leaves.leaveType
                            ORDER BY leaves.UID`

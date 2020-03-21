@@ -16,7 +16,7 @@ async function countleavesfilter(req, res, body) {
             sql         = `SELECT   leaves.leaveType,
                            COUNT(*) AS cnt
                            FROM     leaves
-                           WHERE    timeStamp >= '${start}' AND timeStamp <= '${end}'
+                           WHERE    timeStamp >= '${start}' AND timeStamp <= '${end}' AND status = 1
                            GROUP BY leaves.leaveType
                            ORDER BY leaves.leaveType`
         }
@@ -24,7 +24,7 @@ async function countleavesfilter(req, res, body) {
             sql         = `SELECT   leaves.leaveType,
                            COUNT(*) AS cnt
                            FROM     leaves
-                           WHERE    timeStamp >= '${start}' AND timeStamp <= '${end}' AND UID = ${UID}
+                           WHERE    timeStamp >= '${start}' AND timeStamp <= '${end}' AND UID = ${UID} AND status = 1
                            GROUP BY leaves.leaveType
                            ORDER BY leaves.leaveType`
         }
@@ -32,7 +32,7 @@ async function countleavesfilter(req, res, body) {
             sql         = `SELECT   leaves.leaveType,
                            COUNT(*) AS cnt
                            FROM     leaves
-                           WHERE    UID = ${UID}
+                           WHERE    UID = ${UID} AND status = 1
                            GROUP BY leaves.leaveType
                            ORDER BY leaves.leaveType`
         }
