@@ -17,8 +17,8 @@ function connection() {
         await createTableUsers()
         await createTableLeaves()
         await createTableApprover()
-        await createTableLeavedays()
-        await createTableLeaveMax()
+        await createTableLeaveCount()
+        await createTableLeaveCapacity()
         await createTableUploads()
         await createTableDepartments()
         await createTableUserType()
@@ -41,7 +41,7 @@ function createTableUsers() {
                             deptID              INT,                                            
                             typeID              INT,                                            
                             approverID          INT,                                            
-                            leavedaysID         INT,                                   
+                            leavecountID        INT,                                   
                             PRIMARY KEY         (UID),                                          
                             UNIQUE              (username)                                      
                             )ENGINE=InnoDB DEFAULT CHARSET=utf8`
@@ -57,7 +57,7 @@ function createTableLeaves() {
     let sql             = `CREATE TABLE IF NOT EXISTS leaves (                        
                             leaveID             INT                 AUTO_INCREMENT,
                             leaveType           VARCHAR(255),
-                            timeStamp           DATE,
+                            timeStamp           TIMESTAMP,
                             dateStart           DATE,                                           
                             dateEnd             DATE,                                           
                             reasons             VARCHAR(255),                                   
@@ -93,36 +93,36 @@ function createTableApprover() {
 
 
 // leavedays
-function createTableLeavedays() {
-    let sql             = `CREATE TABLE IF NOT EXISTS leavedays (                          
-                            leavedaysID              INT            AUTO_INCREMENT,         
+function createTableLeaveCount() {
+    let sql             = `CREATE TABLE IF NOT EXISTS leavecount (                          
+                            leavecountID             INT            AUTO_INCREMENT,         
                             sick                     INT,                                            
                             business                 INT,                                            
                             vacation                 INT,                                            
                             substitution             INT,                                            
                             substitutionMax          INT,                                            
-                            PRIMARY KEY             (leavedaysID)                                    
+                            PRIMARY KEY             (leavecountID)                                    
                             )ENGINE=InnoDB DEFAULT CHARSET=utf8`
     CONN.query(sql, function (error, result) {
         if (error) throw error
-        console.log('leavedays created.')
+        console.log('leavecount created.')
     })
 }
 
 
 
 // leavemax
-function createTableLeaveMax() {
-    let sql             = `CREATE TABLE IF NOT EXISTS leavemax (                          
-                            leavemaxID              INT            AUTO_INCREMENT,
+function createTableLeaveCapacity() {
+    let sql             = `CREATE TABLE IF NOT EXISTS leavecapacity (                          
+                            leavecapacityID         INT            AUTO_INCREMENT,
                             sick                    INT,
                             business                INT,
                             vacation                INT,
-                            PRIMARY KEY             (leavemaxID)                                    
+                            PRIMARY KEY             (leavecapacityID)                                    
                             )ENGINE=InnoDB DEFAULT CHARSET=utf8`
     CONN.query(sql, function (error, result) {
         if (error) throw error
-        console.log('leavemax created.')
+        console.log('leavecapacity created.')
     })
 }
 
@@ -180,7 +180,7 @@ function createFK() {
                            ADD FOREIGN KEY (deptID)         REFERENCES departments(deptID),
                            ADD FOREIGN KEY (typeID)         REFERENCES usertypes(typeID),
                            ADD FOREIGN KEY (approverID)     REFERENCES approver(approverID),
-                           ADD FOREIGN KEY (leavedaysID)    REFERENCES leavedays(leavedaysID); 
+                           ADD FOREIGN KEY (leavecountID)   REFERENCES leavecount(leavecountID); 
                           `
     CONN.query(sqlUSERS, function (error, result) {
         if (error) throw error
