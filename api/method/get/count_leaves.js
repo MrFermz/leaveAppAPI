@@ -15,6 +15,7 @@ async function countleaves(req, res) {
                                 (SELECT nickname FROM users WHERE UID = leaves.UID) AS nickname,
                                 COUNT(*) AS cnt
                        FROM leaves
+                       WHERE status = 1
                        GROUP BY leaves.UID, 
                                 leaves.leaveType
                        ORDER BY leaves.UID`
