@@ -15,7 +15,7 @@ async function countleavesfilterdefault(req, res) {
         let sql         = `SELECT   leaves.leaveType,
                            COUNT(*) AS cnt
                            FROM     leaves
-                           WHERE    timeStamp >= '${dateEnd}' AND timeStamp <= '${dateStart}'
+                           WHERE    timeStamp >= '${dateEnd}' AND timeStamp <= '${dateStart}' AND status = 1
                            GROUP BY leaves.leaveType
                            ORDER BY leaves.leaveType`
         db.query(sql, function (error, result) {
