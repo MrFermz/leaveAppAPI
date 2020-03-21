@@ -14,6 +14,7 @@ const lists_users_leaves            = require('./method/post/lists_users_leaves'
 const have_approver                 = require('./method/post/have_approver')
 const lists_users_where             = require('./method/post/lists_users_where')
 const reject_leaves                 = require('./method/post/reject_leaves')
+const cancel                        = require('./method/post/cancel')
 
 
 // ======================================== GET METHOD ========================================
@@ -29,6 +30,9 @@ const lists_type                    = require('./method/get/lists_type')
 const lists_users                   = require('./method/get/lists_users')
 const lists_leave_max               = require('./method/get/lists_leave_max')
 const get_type_id                   = require('./method/get/get_type_id')
+const history_request               = require('./method/get/history_request')
+const history_leaves                = require('./method/get/history_leaves')
+const history_approve               = require('./method/get/history_approve')
 
 
 // ======================================== VERB LIST ========================================
@@ -54,7 +58,7 @@ async function callAPI(req, res, body) {
                 break           
             case '/uploaders'                   : uploaders(req, res, body)
                 break           
-            case '/updateleavemax'              : update_leave_max(req, res, body)
+            case '/updateleavecapacity'         : update_leave_max(req, res, body)
                 break
             case '/countleavesfilter'           : count_leaves_filter(req, res, body)
                 break
@@ -68,6 +72,8 @@ async function callAPI(req, res, body) {
                 break           
             case '/rejectleaves'                : reject_leaves(req, res, body)
                 break           
+            case '/cancel'                      : cancel(req, res, body)
+                break           
             default                             : res.end('404')
                 break
         }
@@ -76,7 +82,7 @@ async function callAPI(req, res, body) {
     // GET
     else if (verb === verbs[1]) {
         switch (path) {
-            case '/listsleavedays'              : lists_leave_days(req, res)  
+            case '/listsleavecount'             : lists_leave_days(req, res)  
                 break           
             case '/listspendings'               : lists_pendings(req, res)
                 break           
@@ -96,9 +102,15 @@ async function callAPI(req, res, body) {
                 break           
             case '/listsapprover'               : lists_approver(req, res)
                 break           
-            case '/listsleavemax'               : lists_leave_max(req, res)
+            case '/listsleavecapacity'          : lists_leave_max(req, res)
                 break           
             case '/gettypeid'                   : get_type_id(req, res)
+                break           
+            case '/historyrequest'              : history_request(req, res)
+                break           
+            case '/historyleaves'               : history_leaves(req, res)
+                break           
+            case '/historyapprove'              : history_approve(req, res)
                 break           
             default                             : res.end('404')
                 break
