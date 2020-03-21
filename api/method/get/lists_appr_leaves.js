@@ -17,7 +17,7 @@ async function listsApprLeaves(req, res) {
                                 leaves.uploadID
                        FROM     leaves
                        WHERE    leaves.status = 0
-                       ORDER BY leaves.leaveID ASC`
+                       ORDER BY leaves.timeStamp ASC`
         db.query(sql, async function (error, result) {
             let leaves              = result
             let images              = []
