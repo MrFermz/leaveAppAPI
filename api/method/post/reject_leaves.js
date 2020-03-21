@@ -18,7 +18,7 @@ async function rejectLeaves(req, res, body) {
                 result_failed['data']   = error
                 res.end(JSON.stringify(result_failed))
             } else {
-                let response    = await restoreDays(data.leaveDaysID, data.leaveType)
+                let response    = await restoreDays(data.leavecountID, data.leaveType)
                 if (response.result == 'success') {
                     res.end(JSON.stringify(result_success))
                 } else {
@@ -30,16 +30,16 @@ async function rejectLeaves(req, res, body) {
 }
 
 
-function restoreDays(leaveDaysID, leaveType) {
+function restoreDays(leavecountID, leaveType) {
     return new Promise(function (resolve, reject) {
-        let sql     = `SELECT ${leaveType} FROM leavedays WHERE leavedaysID = ${leaveDaysID}`
+        let sql     = `SELECT ${leaveType} FROM leavedays WHERE leavecountID = ${leavecountID}`
         db.query(sql, function (error, result) {
             if (error) reject(error)
             else {
                 let remain          = result[0]
                 let key             = Object.keys(remain)[0]
                 let value           = remain[key] - 1
-                let sql     = `UPDATE leavedays SET ${key} = ${value} WHERE leavedaysID = ${leaveDaysID}`
+                let sql     = `UPDATE leavecount SET ${key} = ${value} WHERE leavecountID = ${leavecountID}`
                 db.query(sql, function (error, result) {
                     if (error) reject(error)
                     else resolve(result_success)
