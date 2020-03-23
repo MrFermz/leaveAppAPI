@@ -18,11 +18,14 @@ async function historyleaves(req, res) {
                                 leaves.dateReject,
                                 leaves.rejectReasons,
                                 leaves.UID,
-                                uploads.URL
+                                uploads.URL,
+                                users.nickname,
+                                users.empID
                         FROM    leaves
                         INNER JOIN uploads ON leaves.uploadID = uploads.uploadID
-                        WHERE   UID = ${token.id} AND leaves.status > 0
-                        ORDER BY leaves.timeStamp DESC`
+                        INNER JOIN users ON leaves.UID = users.UID
+                        WHERE   leaves.UID = ${token.id} AND leaves.status > 0
+                        ORDER BY leaves.actionTimeStamp DESC`
         db.query(sql, function (error, result) {
             if (error) {
                 result_failed['data']   = error
