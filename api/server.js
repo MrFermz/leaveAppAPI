@@ -1,6 +1,7 @@
 const http          = require('http')
 const db            = require('./db_connection')
-const config        = require('./config.json')
+const ENV           = require('./config.json')
+const CONFIG        = ENV.DEVELOPMENT
 const api           = require('./api')
 const contentImages = [
                         'image/jpeg',
@@ -35,6 +36,6 @@ const app           = http.createServer(function (req, res) {
 })
 
 
-app.listen(config.PORT, () => {
-    console.log(`Running... ${config.PORT}`)
+app.listen(CONFIG.PORT, () => {
+    console.log(`Running... ${CONFIG.PORT}`)
 })

@@ -1,5 +1,6 @@
 const MYSQL         =   require('mysql')
-const CONFIG        =   require('./config.json')
+const ENV           =   require('./config.json')
+const CONFIG        =   ENV.DEVELOPMENT
 const CONN          =   MYSQL.createPool({
                             connectionLimit : 10,
                             host        : CONFIG.SQL.HOST,
