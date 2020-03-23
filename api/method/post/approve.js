@@ -35,9 +35,10 @@ async function approve(req, res, body) {
 function updateStatus(data) {
     return new Promise(function (resolve, reject) {
         let sql     = `UPDATE   leaves
-                        SET     status      = 1,
-                                dateApprove = '${data.dateApprove}'
-                        WHERE   leaveID     = ${data.id}`
+                        SET     status          = 1,
+                                actionTimeStamp = '${data.dateApprove}',
+                                dateApprove     = '${data.dateApprove}'
+                        WHERE   leaveID         = ${data.id}`
         db.query(sql, function (error, result) {
             if (error) {
                 reject(error)
