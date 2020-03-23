@@ -22,7 +22,7 @@ async function historyleaves(req, res) {
                         FROM    leaves
                         INNER JOIN uploads ON leaves.uploadID = uploads.uploadID
                         WHERE   status = 1 OR status = 2
-                        ORDER BY leaves.timeStamp DESC`
+                        ORDER BY leaves.actionTimeStamp DESC`
         db.query(sql, function (error, result) {
             if (error) {
                 result_failed['data']   = error
