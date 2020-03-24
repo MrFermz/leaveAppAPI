@@ -14,7 +14,6 @@ async function approve(req, res, body) {
                 result_failed['data']   = error
                 res.end(JSON.stringify(result_failed))
             } else {
-                console.log(result[0].status)
                 if (result[0].status == 0) {
                     let update  = await updateStatus(data)
                     if (update.result == 'success') {
