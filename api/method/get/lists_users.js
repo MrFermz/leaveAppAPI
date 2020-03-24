@@ -12,6 +12,7 @@ async function listsusers(req, res) {
                               users.firstname, 
                               users.lastname, 
                               users.nickname, 
+                              users.username,
                               users.deptID, 
                               users.typeID, 
                               users.approverID,
