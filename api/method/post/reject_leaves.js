@@ -33,8 +33,8 @@ function updateStatus(data) {
     return new Promise(function (resolve, reject) {
         let sql         = `UPDATE   leaves
                            SET      status          = 2,
-                                    actionTimeStamp = '${data.dateReject}',
-                                    dateReject      = '${data.dateReject}',
+                                    actionTimeStamp = CURRENT_TIME(),
+                                    dateReject      = CURRENT_TIME(),
                                     rejectReasons   = '${data.reasons}'
                            WHERE    leaveID         = ${data.leaveID}`
         db.query(sql, async function (error, result) {

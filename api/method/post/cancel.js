@@ -33,10 +33,9 @@ async function cancel(req, res, body) {
 
 function updateStatus(data) {
     return new Promise(function (resolve, reject) {
-        console.log(data)
         let sql     = `UPDATE   leaves
                         SET     status          = 3,
-                                actionTimeStamp = '${data.actionTimeStamp}'
+                                actionTimeStamp = CURRENT_TIME()
                         WHERE   leaveID         = ${data.id}`
         db.query(sql, async function (error, result) {
             if (error) {

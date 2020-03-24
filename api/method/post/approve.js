@@ -35,8 +35,8 @@ function updateStatus(data) {
     return new Promise(function (resolve, reject) {
         let sql     = `UPDATE   leaves
                         SET     status          = 1,
-                                actionTimeStamp = '${data.dateApprove}',
-                                dateApprove     = '${data.dateApprove}'
+                                actionTimeStamp = CURRENT_TIME(),
+                                dateApprove     = CURRENT_TIME()
                         WHERE   leaveID         = ${data.id}`
         db.query(sql, function (error, result) {
             if (error) {
