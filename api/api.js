@@ -22,7 +22,7 @@ const count_leaves                  = require('./method/get/count_leaves')
 const count_leaves_filter_default   = require('./method/get/count_leaves_filter_default')
 const lists_approver                = require('./method/get/lists_approver')
 const lists_dept                    = require('./method/get/lists_dept')
-const lists_leave_days              = require('./method/get/lists_leaves_days')
+const lists_leave_count             = require('./method/get/lists_leaves_count')
 const lists_appr_users              = require('./method/get/lists_appr_users')
 const lists_appr_leaves             = require('./method/get/lists_appr_leaves')
 const lists_pendings                = require('./method/get/lists_pendings')
@@ -82,7 +82,7 @@ async function callAPI(req, res, body) {
     // GET
     else if (verb === verbs[1]) {
         switch (path) {
-            case '/listsleavecount'             : lists_leave_days(req, res)  
+            case '/listsleavecount'             : lists_leave_count(req, res)  
                 break           
             case '/listspendings'               : lists_pendings(req, res)
                 break           
