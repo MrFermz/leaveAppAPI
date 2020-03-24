@@ -20,7 +20,8 @@ async function historyrequest(req, res) {
                                 leaves.UID,
                                 uploads.URL,
                                 users.nickname,
-                                users.empID
+                                users.empID,
+                                users.leavecountID
                         FROM    leaves
                         INNER JOIN uploads ON leaves.uploadID = uploads.uploadID
                         INNER JOIN users ON leaves.UID = users.UID
