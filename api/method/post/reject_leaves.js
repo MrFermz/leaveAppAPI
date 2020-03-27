@@ -41,7 +41,7 @@ function updateStatus(data) {
             if (error) {
                 reject(error)
             } else {
-                let response    = await restoreDays(data.leavecountID, data.leaveType)
+                let response    = await restoreDays(data)
                 if (response.result == 'success') {
                     resolve(result_success)
                 } else {
@@ -53,16 +53,16 @@ function updateStatus(data) {
 }
 
 
-function restoreDays(leavecountID, leaveType) {
+function restoreDays(data) {
     return new Promise(function (resolve, reject) {
-        let sql     = `SELECT ${leaveType} FROM leavecount WHERE leavecountID = ${leavecountID}`
+        let sql     = `SELECT ${data.leaveType} FROM leavecount WHERE leavecountID = ${data.leavecountID}`
         db.query(sql, function (error, result) {
             if (error) reject(error)
             else {
-                let remain          = result[0]
-                let key             = Object.keys(remain)[0]
-                let value           = remain[key] - 1
-                let sql     = `UPDATE leavecount SET ${key} = ${value} WHERE leavecountID = ${leavecountID}`
+                let remain  = result[0]
+                let key     = Object.keys(remain)[0]
+                let value   = remain[key] - data.days
+                let sql     = `UPDATE leavecount SET ${key} = ${value} WHERE leavecountID = ${data.leavecountID}`
                 db.query(sql, function (error, result) {
                     if (error) reject(error)
                     else resolve(result_success)
