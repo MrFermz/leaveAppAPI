@@ -4,7 +4,7 @@
         "SQL": {
             "HOST"  : "mariadb",
             "USER"  : "root",
-            "PASS"  : "Mr.FermzLeaveApp",
+            "PASS"  : "1234",
             "DB"    : "internship",
             "PORT"  : "3306"
         }
@@ -12,9 +12,9 @@
     "DEVELOPMENT": {
         "PORT": "9000",
         "SQL": {
-            "HOST"  : "localhost",
-            "USER"  : "root",
-            "PASS"  : "",
+            "HOST"  : "192.168.1.6",
+            "USER"  : "mrfermz",
+            "PASS"  : "1234",
             "DB"    : "internship",
             "PORT"  : "3306"
         }
