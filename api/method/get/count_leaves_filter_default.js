@@ -10,8 +10,8 @@ async function countleavesfilterdefault(req, res) {
         let now         = new Date()
         let past        = new Date(now.setDate(now.getDate() - 31))
         let today       = new Date()
-        dateStart       = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`
-        dateEnd         = `${past.getFullYear()}-${past.getMonth() + 1}-${past.getDate()}`
+        let dateStart   = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()} ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`
+        let dateEnd     = `${past.getFullYear()}-${past.getMonth() + 1}-${past.getDate()} ${past.getHours()}:${past.getMinutes()}:${past.getSeconds()}`
         let sql         = `SELECT   leaves.leaveType,
                            COUNT(*) AS cnt
                            FROM     leaves
